@@ -21,6 +21,12 @@ class TestNYTimesScraper(ScraperTest):
             self.harvester_class.canonical_url(),
         )
 
+    def test_decription(self):
+        self.assertEqual(
+            self.harvester_class.description(),
+            "These quick, easy crackers are a crispy twist on the classic pasta dish, and an excellent cocktail hour snack. Rolling the freshly made dough between sheets of parchment expedites chilling, then cutting crackers with a pastry wheel (or pizza cutter) reduces waste. Do grate your own cheese for this instead of using store-bought, pre-grated cheese, as it plays an integral role in making the dough moist. These cheesy crackers can be kept simple, allowing cheese and pepper to dominate, or gussied up with any combination of onion powder, ground mustard or garlic powder, depending on your preference. This recipe makes a large batch, but the crackers will keep for up to one month, depending on your snack habits.",
+        )
+
     def test_title(self):
         self.assertEqual(self.harvester_class.title(), "Cacio e Pepe Crackers")
 
@@ -35,6 +41,14 @@ class TestNYTimesScraper(ScraperTest):
 
     def test_yields(self):
         self.assertEqual("160 servings", self.harvester_class.yields())
+
+    def test_category(self):
+        self.assertEqual(
+            "snack, crackers and chips, finger foods", self.harvester_class.category()
+        )
+
+    def test_cuisine(self):
+        self.assertEqual("american", self.harvester_class.cuisine())
 
     def test_ingredients(self):
         self.assertEqual(

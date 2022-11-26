@@ -102,7 +102,7 @@ class SchemaOrg:
     def total_time(self):
         if not (self.data.keys() & {"totalTime", "prepTime", "cookTime"}):
             raise SchemaOrgException("Cooking time information not found in SchemaOrg")
-
+    
         def get_key_and_minutes(k):
             source = self.data.get(k)
             # Workaround: strictly speaking schema.org does not provide for minValue (and maxValue) properties on objects of type Duration; they are however present on objects with type QuantitativeValue

@@ -30,4 +30,9 @@ class NYTimes(AbstractScraper):
 
     def description(self):
         return self.schema.description()
-    
+
+    def category(self):
+        return self.schema.category()
+
+    def cuisine(self):
+        return self.schema.cuisine()
