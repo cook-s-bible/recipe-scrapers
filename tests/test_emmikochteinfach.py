@@ -8,6 +8,12 @@ class TestEmmiKochtEinfachScraper(ScraperTest):
     def test_host(self):
         self.assertEqual("emmikochteinfach.de", self.harvester_class.host())
 
+    def test_canonical_url(self):
+        self.assertEqual(
+            "https://emmikochteinfach.de/klassisches-rindergulasch/",
+            self.harvester_class.canonical_url(),
+        )
+
     def test_author(self):
         self.assertEqual("Emmi", self.harvester_class.author())
 
@@ -18,9 +24,6 @@ class TestEmmiKochtEinfachScraper(ScraperTest):
 
     def test_category(self):
         self.assertEqual(None, self.harvester_class.category())
-
-    def test_total_time(self):
-        self.assertEqual(120, self.harvester_class.total_time())
 
     def test_yields(self):
         self.assertEqual("4 servings", self.harvester_class.yields())
@@ -73,3 +76,12 @@ Ich wünsche Dir einen guten Appetit! Lass Dir mein klassisches Rindergulasch Re
             "Mein Familienrezept ist ein echter Klassiker. Gulasch kochen geht einfacher als man denkt. Mit zartem Fleisch, leckeren Röstaromen und einer sämigen Soße wird es auch Dir gelingen.",
             self.harvester_class.description(),
         )
+
+    def test_total_time(self):
+        return self.assertEqual(120.0, self.harvester_class.total_time())
+
+    def test_cook_time(self):
+        return self.assertEqual(90.0, self.harvester_class.cook_time())
+
+    def test_prep_time(self):
+        return self.assertEqual(30.0, self.harvester_class.prep_time())

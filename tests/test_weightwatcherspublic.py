@@ -5,14 +5,16 @@ from tests import ScraperTest
 
 
 class TestweightwatchersPublicScraper(ScraperTest):
-
     scraper_class = WeightWatchersPublic
-
-    # Test-Url:
-    # https://www.weightwatchers.com/de/rezept/kartoffelgulasch/562a9b02873e1afb2a3c4c13
 
     def test_host(self):
         self.assertEqual("www.weightwatchers.com", self.harvester_class.host())
+
+    def test_canonical_url(self):
+        self.assertEqual(
+            "https://www.weightwatchers.com/de/rezept/kartoffelgulasch/562a9b02873e1afb2a3c4c13",
+            self.harvester_class.canonical_url(),
+        )
 
     def test_author(self):
         self.assertEqual("WeightWatchers", self.harvester_class.author())
@@ -64,7 +66,7 @@ class TestweightwatchersPublicScraper(ScraperTest):
             self.harvester_class.ingredients(),
         )
 
-    def test_ingredientsCount(self):
+    def test_ingredients_count(self):
         self.assertEqual(16, len(self.harvester_class.ingredients()))
 
     def test_instructions(self):
@@ -83,7 +85,5 @@ class TestweightwatchersPublicScraper(ScraperTest):
         self.assertEqual("Leicht", self.harvester_class.difficulty())
 
     def test_nutrients(self):
-        expected_nutrients = {
-            "points": "10 bis 13 PersonalPoints",
-        }
+        expected_nutrients = {"points": "13 Points&reg; value"}
         self.assertEqual(self.harvester_class.nutrients(), expected_nutrients)

@@ -1,8 +1,6 @@
 # mypy: disallow_untyped_defs=False
-import re
 
 from ._abstract import AbstractScraper
-from ._utils import get_minutes
 
 
 class CookingCircle(AbstractScraper):
@@ -24,15 +22,7 @@ class CookingCircle(AbstractScraper):
         return self.schema.category()
 
     def total_time(self):
-        ul = self.soup.find("ul", {"class": "single-method-overview__times"})
-        totalTime = None
-        for li in ul.find_all("li"):
-            if li.span.get_text().lower() == "total time:":
-                totalTime = li.span.find_next().get_text()
-
-        if totalTime is not None:
-            totalTime = re.findall("[0-9]+", totalTime)[0]
-        return get_minutes(totalTime)
+        return self.schema.total_time()
 
     def yields(self):
         return self.schema.yields()
@@ -41,7 +31,7 @@ class CookingCircle(AbstractScraper):
         return self.schema.image()
 
     def ingredients(self):
-        ulList = (
+        ul_list = (
             self.soup.find(
                 "div", {"class": "single-ingredients__group", "data-unit": "metric"}
             )
@@ -50,19 +40,19 @@ class CookingCircle(AbstractScraper):
         )
 
         ingredients = []
-        for li in ulList:
+        for li in ul_list:
             ingredients.append(
                 li.get_text().replace("\t", "").replace("\n\n", " ").replace("\n", "")
             )
         return ingredients
 
     def instructions(self):
-        ulList = self.soup.find("ul", {"class": "single-method__method"}).findChildren(
+        ul_list = self.soup.find("ul", {"class": "single-method__method"}).findChildren(
             "li"
         )
 
         instructions = []
-        for li in ulList:
+        for li in ul_list:
             instructions.append(li.get_text().strip().replace("\n", " "))
 
         return "\n".join(instructions)

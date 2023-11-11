@@ -13,13 +13,19 @@ keywords = ["python", "recipes", "scraper", "harvest", "recipe-scraper", "recipe
 license = {text = "MIT License"}
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "License :: OSI Approved :: MIT License",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries",
 ]
 dynamic = ["version", "readme"]
-requires-python = ">= 3.6"
+requires-python = ">= 3.8"
 dependencies = [
     "beautifulsoup4 >= 4.10.0",
     "extruct >= 0.8.0",
